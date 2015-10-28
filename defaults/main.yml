@@ -4,12 +4,18 @@ zfs-set: NO
 nginx_config_dir: /usr/local/etc/nginx/
 nginx_log_dir: /var/log/nginx
 nginx_user: www
-nginx_worker_processes: 2
+nginx_group: www
+nginx_worker_processes: "2"
 nginx_error_level: info
 nginx_pid: /var/run/nginx.pid
-nginx_worker_connections: 1024
+nginx_worker_connections: "1024"
 nginx_sendfile: "on"
-nginx_keepalive_timeout: 65
+nginx_keepalive_timeout: "65"
+nginx_gzip: "on"
+nginx_http_listen: ""
+nginx_http_port: "80"
+nginx_server_name: "{{ inventory_hostname }}"
+nginx_root_dir: /usr/local/www
 
 
 
