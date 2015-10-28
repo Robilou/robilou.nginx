@@ -1,0 +1,49 @@
+---
+# tasks file for nginx
+- name: INCLUDE zfs.yml
+  include: zfs.yml 
+  when: zfs-set
+
+- name: INSTALL nginx
+  sudo: yes
+  pkgng: name={{ item }} state=present
+  with_items:
+      - pcre
+      - nginx
+
+- name: COPY TEMPLATE nginx.conf
+  template: 
+             backup: yes
+             src: nginx.conf.j2
+             dest: /usr/local/etc/nginx/nginx.conf
+             owner: root 
+             group: wheel 
+             mode:  0640
+
+- name: CREATE DIR /var/log/nginx
+  sudo: yes
+  file: 
+     path: "{{ nginx_var_log }}"
+     owner: root
+     group: wheel
+     mode: 0640
+     state: directory
+
+- name: CREATE FILE access.log AND error.log
+  sudo: yes
+  file: 
+     path: "{{ nginx_var_log }}/{{ item }}.log"
+     owner: root
+     group: wheel
+     mode: 0640
+     state: touch
+
+  with_items:
+   - error
+   - access
+
+- name: ENABLE nginx into rc.conf.
+  sudo: yes
+  shell: sysrc nginx_enable=YES  
+  notify: 
+    - start nginx 

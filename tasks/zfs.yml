@@ -1,0 +1,7 @@
+---
+- name: CREATE DATASET www 
+  sudo: yes
+  zfs:  name={{zfs_pool}}/www  state=present mountpoint=/usr/local/www  quota='10G'
+
+
+  

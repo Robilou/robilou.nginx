@@ -1,0 +1,15 @@
+---
+# defaults file for nginx
+zfs-set: NO
+nginx_cnfig_dir: /usr/local/etc/nginx/
+nginx_log_dir: /var/log/nginx
+nginx_user: www
+nginx_worker_processes: 2
+nginx_error_level: info
+nginx_pid: /var/run/nginx.pid
+nginx_worker_connections: 1024
+nginx_sendfile: "on"
+nginx_keepalive_timeout: 65
+
+
+
