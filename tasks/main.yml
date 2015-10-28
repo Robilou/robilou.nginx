@@ -20,7 +20,7 @@
              group: wheel 
              mode:  0640
 
-- name: CREATE DIR sites-available AND sites-enabled
+- name: CREATE DIR conf.d
   sudo: yes
   file: 
      path: "{{ nginx_config_dir }}/{{ item }}"
@@ -30,8 +30,7 @@
      state: directory
 
   with_items:
-   - sites-available
-   - sites-enabled
+   - conf.d
 
 - name: CREATE DIR /var/log/nginx
   sudo: yes
