@@ -15,7 +15,7 @@
   template: 
              backup: yes
              src: nginx.conf.j2
-             dest: {{ nginx_config_dir }}nginx.conf
+             dest: "{{ nginx_config_dir }}nginx.conf"
              owner: root 
              group: wheel 
              mode:  0640
