@@ -20,6 +20,19 @@
              group: wheel 
              mode:  0640
 
+- name: CREATE DIR sites-available AND sites-enabled
+  sudo: yes
+  file: 
+     path: "{{ nginx_config_dir }}/{{ item }}"
+     owner: root
+     group: wheel
+     mode: 0640
+     state: directory
+
+  with_items:
+   - sites-available
+   - sites-enabled
+
 - name: CREATE DIR /var/log/nginx
   sudo: yes
   file: 
